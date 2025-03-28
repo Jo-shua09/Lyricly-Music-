@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      backgroundImage: {
+        hero: "url('/hero.jpg')",
+      },
     },
   },
   plugins: [],

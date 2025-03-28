@@ -1,20 +1,14 @@
 import React from "react";
 import {
   AddAlarm,
-  Directions,
-  DirectionsRounded,
   Explore,
-  ExploreOutlined,
   Favorite,
   Home,
   LibraryMusic,
   Logout,
-  OtherHousesOutlined,
   Person,
   PlaylistAdd,
   PlaylistAddCheckCircle,
-  PlaylistAddCircle,
-  PlaylistPlay,
   QueueMusic,
   Settings,
 } from "@mui/icons-material";
@@ -22,7 +16,7 @@ import {
 const Sidebar = () => {
   return (
     <div className="h-screen w-full border-r-2 border-pink-600">
-      <div className="w-full flex flex-col">
+      <div className="w-full h-full flex flex-col">
         <h2 className="text-6xl font-poppins section-sidebar !pb-0 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-pink-600 to-blue-600">
           lyricly
         </h2>
