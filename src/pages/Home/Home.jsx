@@ -1,6 +1,6 @@
 import React from "react";
-import Hero from "./Sections/Hero";
-import Songs from "./Sections/Songs";
+import Hero from "./sections/Hero";
+import Songs from "./sections/Songs";
 
 const Home = () => {
   return (
