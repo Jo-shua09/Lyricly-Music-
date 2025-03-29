@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "./sections/Hero";
-import Songs from "./sections/Songs";
+import SpotifyLayout from "../../layouts/SongsLayout";
+import { getToken } from "../../auth/SpotifyAuth";
 
 const Home = () => {
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      const accessToken = await getToken();
+      setToken(accessToken);
+    };
+    
+    initializeAuth();
+  }, []);
+
   return (
     <div className="section-page">
       <Hero />
-      <Songs />
+      {token && <SpotifyLayout token={token} />}
     </div>
   );
 };
