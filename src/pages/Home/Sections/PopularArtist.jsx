@@ -1,23 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchPopularArtists } from "../../../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
-const PopularArtist = ({ title, artistIds }) => {
+const PopularArtist = ({ title }) => {
   const [artists, setArtists] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getArtists = async () => {
       try {
-        const artistData = await Promise.all(
-          artistIds.map(async (id) => await fetchPopularArtists(id))
-        );
-        setArtists(artistData.filter((artist) => artist !== null));
+        const artistData = await fetchPopularArtists();
+        if (artistData.length > 0) {
+          setArtists(artistData);
+        } else {
+          setError("No artists found");
+        }
       } catch (error) {
+        setError("Failed to load artists");
         console.error("Error fetching artists:", error);
       }
     };
     getArtists();
-  }, [artistIds]);
+  }, []);
+
+  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <div className="flex items-start flex-col gap-y-5 my-10">
@@ -31,13 +37,14 @@ const PopularArtist = ({ title, artistIds }) => {
             className="flex flex-col gap-y-5 bg-black/35 w-full p-4 rounded-xl hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >
             <img
-              src={artist.images?.[0]?.url || "/default-artist.jpg"}
+              src={artist.image || "/default-artist.jpg"}
               alt={artist.name}
-              className="w-full rounded-xl object-cover"
+              className="w-full h-48 rounded-xl object-cover"
             />
-            <h4 className="text-2xl font-medium">{artist.name}</h4>
+            <h4 className="text-2xl font-medium truncate">{artist.name}</h4>
             <p className="text-xl font-light font-poppins">
-              Followers: {artist.followers?.total.toLocaleString()}
+              {artist.followers ? artist.followers.toLocaleString() : "N/A"}{" "}
+              followers
             </p>
           </div>
         ))}

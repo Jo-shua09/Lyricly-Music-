@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import { fetchPlaylists } from "../../../services/spotifyService";
+import { fetchMoodPlaylists } from "../../../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
-const PlayList = ({ title, category = "pop" }) => {
+const PlayList = ({ title }) => {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     const getPlaylists = async () => {
       try {
-        const playlistData = await fetchPlaylists(category);
+        const playlistData = await fetchMoodPlaylists(); // Fetch mood-based playlists
         setPlaylists(playlistData);
       } catch (error) {
         console.error("Error fetching playlists:", error);
       }
     };
     getPlaylists();
-  }, [category]);
+  }, []);
 
   return (
     <div className="flex items-start flex-col gap-y-5 my-10">
@@ -29,13 +29,13 @@ const PlayList = ({ title, category = "pop" }) => {
             className="flex flex-col gap-y-5 bg-black/35 w-full p-4 rounded-xl hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >
             <img
-              src={playlist.images?.[0]?.url || "/default-playlist.jpg"}
+              src={playlist.image}
               alt={playlist.name}
-              className="w-full rounded-xl object-cover"
+              className="w-full rounded-xl object-cover h-48"
             />
             <h4 className="text-2xl font-medium">{playlist.name}</h4>
             <p className="text-xl font-light font-poppins">
-              {playlist.tracks?.total} songs
+              {playlist.tracks} songs
             </p>
           </div>
         ))}
