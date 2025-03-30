@@ -4,7 +4,6 @@ import Discover from "./pages/Discover/Discover";
 import Album from "./pages/Album/Album";
 import Artist from "./pages/Artist/Artist";
 import AppLayout from "./layouts/AppLayout";
-import { spotifyAuth } from "./auth/SpotifyAuth"; // Updated import
 
 const AppRouter = () => {
   return (
@@ -15,10 +14,6 @@ const AppRouter = () => {
           <Route path="/discover" element={<Discover />} />
           <Route path="/album/:id" element={<Album />} />
           <Route path="/artist/:id" element={<Artist />} />
-          <Route
-            path="/callback"
-            element={<spotifyAuth.CodeExchangeComponent />} // Updated component reference
-          />
         </Route>
       </Routes>
     </Router>

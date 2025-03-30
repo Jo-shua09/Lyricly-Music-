@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="w-full h-full">
       <div className="w-full h-full rounded-[3rem] section-page bg-hero bg-cover brightness-75 bg-center">
-        <div className="flex justify-between place-content-end w-full gap-x-10 items-center">
+        <div className="flex justify-between place-content-end w-full gap-x-10 gap-y-10 m-auto text-center md:flex-nowrap flex-wrap items-center">
           <div className="relative flex-1">
             <input
               placeholder="Search for music, artist..."
@@ -15,7 +15,7 @@ const Hero = () => {
             <Search className="!text-[2.2rem] absolute top-1/4 right-5" />
           </div>
 
-          <div className="flex-1 place-content-center flex w-full">
+          <div className="flex-1 place-content-center hidden md:flex w-full">
             <ul className="flex items-center justify-around text-white text-2xl font-semibold gap-x-10">
               <li className="cursor-pointer hover:text-pink-600 hover:underline underline-offset-4">
                 about us
@@ -39,8 +39,22 @@ const Hero = () => {
           </div>
         </div>
 
+        <div className="flex-1 place-content-center md:hidden flex w-full mt-7">
+          <ul className="flex items-center justify-around text-white text-2xl font-semibold gap-x-10">
+            <li className="cursor-pointer hover:text-pink-600 hover:underline underline-offset-4">
+              about us
+            </li>
+            <li className="cursor-pointer hover:text-pink-600 hover:underline underline-offset-4">
+              contact
+            </li>
+            <li className="cursor-pointer hover:text-pink-600 hover:underline underline-offset-4">
+              premium
+            </li>
+          </ul>
+        </div>
+
         <div className="w-full h-full mt-72 mb-28">
-          <div className="w-2/5">
+          <div className="md:w-2/5 w-4/5">
             <h1 className="uppercase font-poppins font-semibold text-5xl">
               all the{" "}
               <span className="text-pink-600 uppercase text-5xl">
