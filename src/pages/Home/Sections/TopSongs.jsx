@@ -28,7 +28,7 @@ const TopSongs = ({ title }) => {
               <img
                 src={song.image}
                 alt={song.name}
-                className="w-full rounded-xl object-cover"
+                className="w-full h-[30rem] rounded-xl object-cover"
               />
             ) : (
               <div className="w-full h-40 bg-gray-700 rounded-xl flex items-center justify-center">

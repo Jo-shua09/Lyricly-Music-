@@ -15,7 +15,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className="h-screen w-full border-r-2 border-pink-600">
+    <div className="h-screen w-full border-r-2 sticky border-pink-600">
       <div className="w-full h-full flex flex-col">
         <h2 className="text-6xl font-poppins section-sidebar !pb-0 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-pink-600 to-blue-600">
           lyricly
@@ -23,7 +23,7 @@ const Sidebar = () => {
 
         <div className="w-full flex flex-col">
           <h4 className="normal-case section-sidebar !pb-0 text-xl text-pink-600 font-semibold">
-            menu
+            menuss
           </h4>
           <div className="flex flex-col pr-5 sm:text-2xl font-normal  text-white">
             <div className="flex items-center px-[1.5rem] hover:bg-pink-600 rounded-br-xl rounded-tr-xl cursor-pointer py-3 gap-x-3 group">
