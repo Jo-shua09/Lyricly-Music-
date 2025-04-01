@@ -87,7 +87,6 @@ export const fetchNewReleases = async () => {
 };
 
 //Fetch Trending songs
-
 export const fetchTrendingSongs = async () => {
   try {
     const token = await getSpotifyToken();
@@ -258,7 +257,7 @@ export const fetchMoodPlaylists = async () => {
 
     for (const mood of moods) {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=${mood}&type=playlist&limit=1`,
+        `https://api.spotify.com/v1/search?q=${mood}&type=playlist&limit=5`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
