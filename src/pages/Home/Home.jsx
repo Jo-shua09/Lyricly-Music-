@@ -3,7 +3,7 @@ import SongsLayout from "./sections/SongsLayout";
 
 const Home = () => {
   return (
-    <div className="section-page">
+    <div className="">
       <Hero />
       <SongsLayout />
     </div>

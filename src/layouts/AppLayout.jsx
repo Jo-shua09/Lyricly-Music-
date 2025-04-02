@@ -8,7 +8,7 @@ const MainLayout = () => {
       <div className="w-full h-full flex-1 hidden md:flex">
         <Sidebar />
       </div>
-      <div className="w-full h-full flex-[5]">
+      <div className="w-full h-full flex-[5] section-page">
         <main>
           <Outlet />
         </main>
