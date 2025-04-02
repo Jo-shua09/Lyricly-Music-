@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchNewReleases } from "../../../services/spotifyService";
+import { fetchNewReleases } from "../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
 const NewReleases = ({ title }) => {

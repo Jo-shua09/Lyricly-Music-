@@ -8,11 +8,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="mt-36 mb-10 h-full grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 col-span-[26] gap-x-5 gap-y-10 w-full rounded-tr-xl rounded-tl-xl py-10 px-5 pt-2">
+    <div className="mt-36 mb-10 h-full grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 col-span-[26] gap-x-5 gap-y-10 w-full rounded-tr-xl rounded-tl-xl py-10 px-5 pt-2">
       <div className="col-span-1 md:w-[130%]">
         <h3 className="text-3xl mb-10 font-poppins font-semibold">about</h3>
         <p className="text-2xl font-normal">
-          Melodies is a website that has been created for over{" "}
+          Lyricly is a website that has been created for over{" "}
           <span className="text-pink-600 normal-case">5 year’s</span> now and it
           is one of the most famous music player website’s in the world. in this
           website you can listen and download songs for free. also of you want

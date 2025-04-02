@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchPopularArtists } from "../../../services/spotifyService";
+import { fetchPopularArtists } from "../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
 const PopularArtist = ({ title }) => {

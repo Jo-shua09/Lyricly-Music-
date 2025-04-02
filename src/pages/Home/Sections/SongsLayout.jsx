@@ -1,10 +1,10 @@
 import React from "react";
 import TopSongs from "./topSongs";
-import NewReleases from "./newReleases";
 import TrendingSongs from "./trendingSongs";
-import PopularArtist from "./PopularArtist";
-import TopAlbums from "./TopAlbums";
-import PlayList from "./PlayLists";
+import NewReleases from "../../../components/NewReleases";
+import PopularArtist from "../../../components/PopularArtist";
+import TopAlbums from "../../../components/TopAlbums";
+import PlayList from "../../../components/PlayLists";
 
 const SongsLayout = () => {
   return (
