@@ -1,7 +1,7 @@
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 
-// SETTINGS FOR API DATA COLLECTION
+// Fetch Spotify API Token
 const getSpotifyToken = async () => {
   try {
     const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -12,6 +12,7 @@ const getSpotifyToken = async () => {
       },
       body: "grant_type=client_credentials",
     });
+
     if (!response.ok) throw new Error("Failed to fetch token");
     return (await response.json()).access_token;
   } catch (error) {
@@ -20,14 +21,16 @@ const getSpotifyToken = async () => {
   }
 };
 
-// SETTINGS FOR API ENDPOINT
+// Generic Fetch Function for API Calls
 const fetchFromSpotify = async (endpoint) => {
   const token = await getSpotifyToken();
   if (!token) return [];
+
   try {
     const response = await fetch(`https://api.spotify.com/v1/${endpoint}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
     return await response.json();
   } catch (error) {
@@ -36,7 +39,7 @@ const fetchFromSpotify = async (endpoint) => {
   }
 };
 
-// FETCH TOP SONGS FROM API
+// Fetch Top Songs
 export const fetchTopSongs = async () => {
   const data = await fetchFromSpotify("search?q=hip-hop&type=track&limit=6");
   return (
@@ -49,19 +52,22 @@ export const fetchTopSongs = async () => {
   );
 };
 
+// Fetch New Releases
 export const fetchNewReleases = async () => {
   const data = await fetchFromSpotify("browse/new-releases?limit=5");
   return data?.albums?.items || [];
 };
 
-// FETCH TRENDING SONGS FROM API
+// Fetch Trending Songs
 export const fetchTrendingSongs = async () => {
   const genres = ["pop", "rock", "hip-hop", "electronic", "r-n-b", "latin"];
   const randomGenre = genres[Math.floor(Math.random() * genres.length)];
   const offset = Math.floor(Math.random() * 100);
+
   const data = await fetchFromSpotify(
     `search?q=genre:${randomGenre}&type=track&limit=10&offset=${offset}`
   );
+
   return (
     data?.tracks?.items?.map(
       ({ id, name, artists, album, preview_url, popularity }) => ({
@@ -76,19 +82,23 @@ export const fetchTrendingSongs = async () => {
   );
 };
 
-// FETCH POPULAR ARTIST FROM API
+// Fetch Popular Artists
 export const fetchPopularArtists = async () => {
   const data = await fetchFromSpotify("browse/new-releases?limit=50");
+
   const artistIds = [
     ...new Set(
       data?.albums?.items.flatMap(({ artists }) => artists.map((a) => a.id))
     ),
   ];
+
   const shuffledArtists = artistIds.sort(() => 0.5 - Math.random()).slice(0, 5);
   if (!shuffledArtists.length) return [];
+
   const artistData = await fetchFromSpotify(
     `artists?ids=${shuffledArtists.join(",")}`
   );
+
   return (
     artistData?.artists?.map(({ id, name, images, followers }) => ({
       id,
@@ -99,9 +109,10 @@ export const fetchPopularArtists = async () => {
   );
 };
 
-// FETCH TOP ALBUMS FROM API
+// Fetch Top Albums
 export const fetchTopAlbums = async () => {
   const data = await fetchFromSpotify("browse/new-releases?limit=50");
+
   return (
     data?.albums?.items
       ?.sort(() => 0.5 - Math.random())
@@ -115,23 +126,25 @@ export const fetchTopAlbums = async () => {
   );
 };
 
-// FETCH PLAYLIST BASED ON MODD FROM API
+// Fetch Mood-Based Playlists
 export const fetchMoodPlaylists = async () => {
   const moods = [
     "sad",
     "chill",
-    "playing",
+    "party",
     "dancing",
     "workout",
     "love",
     "happy",
   ];
+
   const playlists = await Promise.all(
     moods.map(async (mood) => {
       const data = await fetchFromSpotify(
         `search?q=${mood}&type=playlist&limit=1`
       );
       const playlist = data?.playlists?.items?.[0];
+
       return playlist
         ? {
             id: playlist.id,
@@ -143,18 +156,18 @@ export const fetchMoodPlaylists = async () => {
         : null;
     })
   );
+
   return playlists.filter(Boolean);
 };
 
-// FETCH DIFFERENT GENRES OF MUSIC FROM API
+// Fetch Music Genres (FIXED)
 export const fetchMusicGenres = async () => {
   try {
     const token = await getSpotifyToken();
     if (!token) return [];
 
-    // First get available genres
-    const genresResponse = await fetch(
-      "https://api.spotify.com/v1/recommendations/available-genre-seeds",
+    const response = await fetch(
+      "https://api.spotify.com/v1/browse/categories?limit=5",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -163,52 +176,28 @@ export const fetchMusicGenres = async () => {
       }
     );
 
-    if (!genresResponse.ok) {
-      throw new Error("Failed to fetch genres");
+    if (!response.ok) throw new Error("Failed to fetch genres");
+
+    const data = await response.json();
+
+    // FIX: Ensure data exists
+    if (!data.categories?.items || data.categories.items.length === 0) {
+      console.warn("No genres found from API");
+      return [];
     }
 
-    const genresData = await genresResponse.json();
-    const selectedGenres = genresData.genres.slice(0, 5); // Get first 5 genres
-
-    // For each genre, get a playlist to get its image
-    const genresWithImages = await Promise.all(
-      selectedGenres.map(async (genreName) => {
-        const playlistResponse = await fetch(
-          `https://api.spotify.com/v1/search?q=genre:${genreName}&type=playlist&limit=1`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (!playlistResponse.ok) {
-          return {
-            name: genreName,
-            images: [{ url: "/default-genre.jpg" }],
-            artists: [{ name: "Various Artists" }],
-          };
-        }
-
-        const playlistData = await playlistResponse.json();
-        const playlist = playlistData.playlists.items[0];
-
-        return {
-          name: genreName,
-          images: playlist?.images || [{ url: "/default-genre.jpg" }],
-          artists: [
-            { name: playlist?.owner?.display_name || "Various Artists" },
-          ],
-        };
-      })
-    );
-
-    return genresWithImages;
+    return data.categories.items.map((item) => ({
+      name: item.name || "Unknown Genre",
+      images: item.icons?.length ? item.icons : [{ url: "/default-genre.jpg" }], // Ensure images exist
+    }));
   } catch (error) {
     console.error("Error fetching music genres:", error);
     return [];
   }
 };
 
-// FETCH DIFFERENT MUSIC VIDEOS FROM API
+// REMOVE: Fetching Music Videos (Spotify doesn't provide them)
+export const fetchMusicVideos = async () => {
+  console.warn("Spotify does not provide music videos.");
+  return [];
+};
