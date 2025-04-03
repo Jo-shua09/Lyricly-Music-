@@ -1,39 +1,39 @@
 import { useState, useEffect } from "react";
-import { fetchNewReleases } from "../../../services/spotifyService";
+import { fetchMusicGenres } from "../../../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
 const Genre = ({ title }) => {
-  const [albums, setAlbums] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    const getAlbums = async () => {
-      const newReleases = await fetchNewReleases();
-      setAlbums(newReleases);
+    const getGenres = async () => {
+      const Genres = await fetchMusicGenres();
+      setGenres(Genres);
     };
-    getAlbums();
+    getGenres();
   }, []);
 
   return (
     <div className="flex items-start flex-col gap-y-5 my-16">
       <h2 className="font-bold font-poppins text-4xl">
         {title} {""}
-        <span className="text-pink-600">music</span>
+        <span className="text-pink-600">genre</span>
       </h2>
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-5 justify-between w-full">
-        {albums.map((album, index) => (
+        {genres.map((genre, index) => (
           <div
             key={index}
             className="flex flex-col gap-y-5 bg-black/35 w-full p-4 cursor-pointer rounded-xl hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >
             <img
-              src={album.images[0].url}
-              alt={album.name}
+              src={genre.images[0].url}
+              alt={genre.name}
               className="w-full h-[20rem] rounded-xl object-cover"
             />
 
-            <h4 className="text-2xl font-medium">{album.name}</h4>
+            <h4 className="text-2xl font-medium">{genre.name}</h4>
             <p className="text-2xl font-semibold font-poppins">
-              {album.artists[0].name}
+              {genre.artists[0].name}
             </p>
           </div>
         ))}

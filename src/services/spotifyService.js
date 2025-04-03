@@ -147,5 +147,68 @@ export const fetchMoodPlaylists = async () => {
 };
 
 // FETCH DIFFERENT GENRES OF MUSIC FROM API
+export const fetchMusicGenres = async () => {
+  try {
+    const token = await getSpotifyToken();
+    if (!token) return [];
+
+    // First get available genres
+    const genresResponse = await fetch(
+      "https://api.spotify.com/v1/recommendations/available-genre-seeds",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!genresResponse.ok) {
+      throw new Error("Failed to fetch genres");
+    }
+
+    const genresData = await genresResponse.json();
+    const selectedGenres = genresData.genres.slice(0, 5); // Get first 5 genres
+
+    // For each genre, get a playlist to get its image
+    const genresWithImages = await Promise.all(
+      selectedGenres.map(async (genreName) => {
+        const playlistResponse = await fetch(
+          `https://api.spotify.com/v1/search?q=genre:${genreName}&type=playlist&limit=1`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!playlistResponse.ok) {
+          return {
+            name: genreName,
+            images: [{ url: "/default-genre.jpg" }],
+            artists: [{ name: "Various Artists" }],
+          };
+        }
+
+        const playlistData = await playlistResponse.json();
+        const playlist = playlistData.playlists.items[0];
+
+        return {
+          name: genreName,
+          images: playlist?.images || [{ url: "/default-genre.jpg" }],
+          artists: [
+            { name: playlist?.owner?.display_name || "Various Artists" },
+          ],
+        };
+      })
+    );
+
+    return genresWithImages;
+  } catch (error) {
+    console.error("Error fetching music genres:", error);
+    return [];
+  }
+};
 
 // FETCH DIFFERENT MUSIC VIDEOS FROM API
