@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchNewReleases } from "../../../services/spotifyService";
 import { AddOutlined } from "@mui/icons-material";
 
-const Genre = ({ title }) => {
+const MusicVideo = ({ title }) => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Genre = ({ title }) => {
     <div className="flex items-start flex-col gap-y-5 my-16">
       <h2 className="font-bold font-poppins text-4xl">
         {title} {""}
-        <span className="text-pink-600">music</span>
+        <span className="text-pink-600">video</span>
       </h2>
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-5 justify-between w-full">
         {albums.map((album, index) => (
@@ -48,4 +48,4 @@ const Genre = ({ title }) => {
   );
 };
 
-export default Genre;
+export default MusicVideo;

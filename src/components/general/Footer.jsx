@@ -8,10 +8,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="mt-36 mb-10 h-full grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 col-span-[26] gap-x-5 gap-y-10 w-full rounded-tr-xl rounded-tl-xl py-10 px-5 pt-2">
-      <div className="col-span-1 md:w-[130%]">
+    <div className="mt-36 mb-10 h-full flex flex-wrap md:flex-nowrap items-start justify-between gap-x-5 gap-y-10">
+      <div className="w-full md:flex-[2]">
         <h3 className="text-3xl mb-10 font-poppins font-semibold">about</h3>
-        <p className="text-2xl font-normal">
+        <p className="text-2xl font-normal normal-case pr-5">
           Lyricly is a website that has been created for over{" "}
           <span className="text-pink-600 normal-case">5 year’s</span> now and it
           is one of the most famous music player website’s in the world. in this
@@ -21,11 +21,11 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="text-center col-span-1 w-full">
+      <div className="text-center w-full md:flex-1">
         <h3 className="text-3xl mb-10 font-poppins font-semibold underline underline-offset-8">
           Lyricly
         </h3>
-        <ul className="text-xl flex flex-col gap-y-5 items-center justify-center font-medium">
+        <ul className="text-2xl flex flex-col gap-y-5 items-center justify-center font-medium">
           <li className=" cursor-pointer hover:text-pink-600 list-none">
             songs
           </li>
@@ -38,11 +38,11 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className="text-center col-span-1 w-full">
+      <div className="text-center w-full md:flex-1">
         <h3 className="text-3xl mb-10 font-poppins font-semibold underline underline-offset-8">
           access
         </h3>
-        <ul className="text-xl flex flex-col gap-y-5 items-center justify-center font-medium">
+        <ul className="text-2xl flex flex-col gap-y-5 items-center justify-center font-medium">
           <li className=" cursor-pointer hover:text-pink-600 list-none">
             explore
           </li>
@@ -61,11 +61,11 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className="text-center col-span-1 w-full">
+      <div className="text-center w-full md:flex-1">
         <h3 className="text-3xl mb-10 font-poppins font-semibold underline underline-offset-8">
           contact
         </h3>
-        <ul className="text-xl flex flex-col gap-y-5 items-center justify-center font-medium">
+        <ul className="text-2xl flex flex-col gap-y-5 items-center justify-center font-medium">
           <li className=" cursor-pointer hover:text-pink-600 list-none">
             about
           </li>
@@ -81,7 +81,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className="text-center col-span-1 w-full">
+      <div className="text-center w-full md:flex-1">
         <h2 className="text-6xl font-poppins section-sidebar !pb-0 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-pink-600 to-blue-600">
           lyricly
         </h2>
