@@ -10,7 +10,7 @@ import Genre from "./sections/Genre";
 const Discover = () => {
   return (
     <div>
-      <div className="">
+      <div data-aos="fade-left" className="">
         <Topbar />
         <Genre title="music" />
         <PlayLists title="mood " />

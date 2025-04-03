@@ -8,7 +8,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="mt-36 mb-10 h-full flex flex-wrap md:flex-nowrap items-start justify-between gap-x-5 gap-y-10">
+    <div
+      data-aos="fade-down"
+      data-aos-delay="200"
+      className="mt-36 mb-10 h-full flex flex-wrap md:flex-nowrap items-start justify-between gap-x-5 gap-y-10"
+    >
       <div className="w-full md:flex-[2]">
         <h3 className="text-3xl mb-10 font-poppins font-semibold">about</h3>
         <p className="text-2xl font-normal normal-case pr-5">

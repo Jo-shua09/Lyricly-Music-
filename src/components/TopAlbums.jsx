@@ -25,6 +25,8 @@ const TopAlbums = ({ title }) => {
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-5 justify-between w-full">
         {albums.map((album) => (
           <div
+            data-aos="flip-up"
+            data-aos-delay="200"
             key={album.id}
             className="flex flex-col gap-y-5 bg-black/35 w-full p-4 cursor-pointer rounded-xl hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >

@@ -4,7 +4,11 @@ import { Search } from "@mui/icons-material";
 const Topbar = () => {
   return (
     <div>
-      <div className="flex justify-between place-content-end w-full gap-x-10 gap-y-10 m-auto text-center md:flex-nowrap flex-wrap items-center">
+      <div
+        data-aos="fade-down"
+        data-aos-delay="200"
+        className="flex justify-between place-content-end w-full gap-x-10 gap-y-10 m-auto text-center md:flex-nowrap flex-wrap items-center"
+      >
         <div className="relative flex-1">
           <input
             placeholder="Search for music, artist..."

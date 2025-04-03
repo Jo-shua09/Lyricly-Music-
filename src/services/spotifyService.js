@@ -160,7 +160,7 @@ export const fetchMoodPlaylists = async () => {
   return playlists.filter(Boolean);
 };
 
-// Fetch Music Genres (FIXED)
+// Fetch Music Genres
 export const fetchMusicGenres = async () => {
   try {
     const token = await getSpotifyToken();

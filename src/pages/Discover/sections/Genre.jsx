@@ -21,6 +21,8 @@ const Genre = ({ title }) => {
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-5 w-full">
         {genres.map((genre, index) => (
           <div
+            data-aos="zoom-in"
+            data-aos-delay="200"
             key={index}
             className="flex flex-col gap-y-5 bg-black/35 p-4 rounded-xl cursor-pointer hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >

@@ -21,6 +21,8 @@ const TopSongs = ({ title }) => {
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-5 justify-between w-full">
         {songs.map((song, index) => (
           <div
+            data-aos="fade-left"
+            data-aos-delay="200"
             key={index}
             className="flex flex-col gap-y-5 bg-black/35 w-full p-4 cursor-pointer rounded-xl hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)] shadow-xl"
           >

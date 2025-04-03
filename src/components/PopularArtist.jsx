@@ -27,6 +27,8 @@ const PopularArtist = ({ title }) => {
       <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-5 h-full justify-center items-center w-full">
         {artists.map((artist) => (
           <div
+            data-aos="fade-up-left"
+            data-aos-delay="200"
             key={artist.id}
             className="flex flex-col justify-center gap-y-3 w-full cursor-pointer h-full py-5 rounded-xl items-center hover:bg-black/35 hover:shadow-[1px_1px_10px_rgba(0,0,0,0.9)]"
           >

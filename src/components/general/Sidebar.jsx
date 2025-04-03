@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   return (
     <div className="h-screen w-[16.5%] md:fixed border-r-2 border-pink-600">
-      <div className="w-full h-full flex flex-col">
+      <div data-aos="fade-up" className="w-full h-full flex flex-col">
         <Link to="/">
           <h2 className="text-6xl cursor-pointer font-poppins section-sidebar !pb-0 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-pink-600 to-blue-600">
             lyricly

@@ -3,7 +3,7 @@ import SongsLayout from "./sections/SongsLayout";
 
 const Home = () => {
   return (
-    <div className="">
+    <div data-aos="fade-left" className="">
       <Hero />
       <SongsLayout />
     </div>

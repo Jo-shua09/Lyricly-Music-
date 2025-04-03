@@ -23,7 +23,11 @@ const TrendingSongs = ({ title }) => {
       <h2 className="font-bold font-poppins text-4xl">
         {title} <span className="text-pink-600">songs</span>
       </h2>
-      <div className="w-full overflow-x-auto">
+      <div
+        data-aos="flip-down"
+        data-aos-delay="200"
+        className="w-full overflow-x-auto"
+      >
         <table className="min-w-full bg-black/35 rounded-xl">
           <thead>
             <tr className="border-b border-gray-700">
@@ -46,6 +50,8 @@ const TrendingSongs = ({ title }) => {
               songs.map((song) =>
                 song && song.id ? (
                   <tr
+                    data-aos="fade-left"
+                    data-aos-delay="400"
                     key={song.id}
                     className="border-b cursor-pointer border-gray-700 hover:bg-black/50"
                   >
